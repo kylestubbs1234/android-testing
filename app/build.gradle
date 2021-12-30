@@ -26,11 +26,13 @@ android {
         enabledForTests = true
     }
 
-    testOptions.unitTests {
-        includeAndroidResources = true
-    }
     packagingOptions {
         resources.excludes.add("META-INF/*")
+    }
+
+    testOptions.unitTests {
+        includeAndroidResources = true
+        returnDefaultValues = true
     }
 }
 
@@ -70,13 +72,9 @@ dependencies {
 
     // AndroidX Test - JVM testing
     testImplementation "androidx.test.ext:junit-ktx:$androidXTestExtKotlinRunnerVersion"
-
     testImplementation "androidx.test:core-ktx:$androidXTestCoreVersion"
-
     testImplementation "org.robolectric:robolectric:$robolectricVersion"
-
     testImplementation "androidx.arch.core:core-testing:$archTestingVersion"
-
     testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
 
     // Dependencies for Android instrumented unit tests
@@ -91,10 +89,13 @@ dependencies {
 
     // Dependencies for Android instrumented unit tests
     androidTestImplementation "org.mockito:mockito-core:$mockitoVersion"
-
     androidTestImplementation "com.linkedin.dexmaker:dexmaker-mockito:$dexMakerVersion"
-
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
 
+    // Dependencies for Android instrumented unit tests
+    androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
+    androidTestImplementation "androidx.arch.core:core-testing:$archTestingVersion"
+
+    implementation "androidx.test.espresso:espresso-idling-resource:$espressoVersion"
 
 }
